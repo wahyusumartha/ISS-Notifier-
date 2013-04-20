@@ -7,13 +7,25 @@
 //
 
 #import "AppDelegate.h"
+
 #import <Parse/Parse.h>
+
+#import "MainViewController.h"
+#import "SecureUDID.h"
+#import "AFNetworking.h"
+
 
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+@synthesize navController = _navController;
+@synthesize mainViewController = _mainViewController;
+@synthesize deviceToken = _deviceToken;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,19 +40,36 @@
     // track statistics around application opens
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    // Register for push notification
     // Register for push notifications
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
+    // set registerOrUpdateUser Flag
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:YES forKey:@"registerOrUpdateUser"];
+    [userDefaults synchronize];
+    userDefaults = nil;
     
+    self.mainViewController = [[MainViewController alloc] init];
     
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    self.navController.delegate = self;
+    
+    [self.window setRootViewController:self.navController];
+    
     [self.window makeKeyAndVisible];
+    
+    // Facebook SDK * pro-tip *
+    // We take advantage of the `FBLoginView` in our loginViewController, which can
+    // automatically open a session if there is a token cached. If we were not using
+    // that control, this location would be a good place to try to open a session
+    // from a token cache.
+
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -174,6 +203,12 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
     
+    NSString* newDeviceToken = [[[[deviceToken description]
+                                  stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                 stringByReplacingOccurrencesOfString: @">" withString: @""]
+                                stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    self.deviceToken = newDeviceToken;
 }
 
 #pragma mark - Push Notifications 
@@ -182,5 +217,8 @@
     // Received Push Notification while the app is active
     [PFPush handlePush:userInfo];
 }
+
+
+
 
 @end
