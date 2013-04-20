@@ -32,6 +32,8 @@
 		EB77C55B1722BC64006B1E23 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5511722BC64006B1E23 /* AFXMLRequestOperation.m */; };
 		EB77C55C1722BC64006B1E23 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5531722BC64006B1E23 /* UIImageView+AFNetworking.m */; };
 		EB77C5611722D885006B1E23 /* ScheduleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5601722D885006B1E23 /* ScheduleListViewController.m */; };
+		EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */; };
+		EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5681722E3EB006B1E23 /* Schedule.m */; };
 		EB97199717226CBF00863A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199617226CBF00863A71 /* UIKit.framework */; };
 		EB97199917226CBF00863A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199817226CBF00863A71 /* Foundation.framework */; };
 		EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199A17226CBF00863A71 /* CoreGraphics.framework */; };
@@ -101,6 +103,10 @@
 		EB77C5531722BC64006B1E23 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		EB77C55F1722D885006B1E23 /* ScheduleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleListViewController.h; sourceTree = "<group>"; };
 		EB77C5601722D885006B1E23 /* ScheduleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleListViewController.m; sourceTree = "<group>"; };
+		EB77C5641722DD3E006B1E23 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EB77C5671722E3EB006B1E23 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
+		EB77C5681722E3EB006B1E23 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		EB97199317226CBF00863A71 /* ISS-Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISS-Spot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97199617226CBF00863A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB97199817226CBF00863A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -183,9 +189,9 @@
 		EB77C53C1722B9E1006B1E23 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
+				EB77C5631722DD2F006B1E23 /* SecureUDID */,
+				EB77C5621722DD27006B1E23 /* MBProgressHUD */,
 				EB77C5401722BC64006B1E23 /* AFNetworking */,
-				EB77C53D1722B9F6006B1E23 /* SecureUDID.h */,
-				EB77C53E1722B9F6006B1E23 /* SecureUDID.m */,
 			);
 			name = Externals;
 			sourceTree = "<group>";
@@ -232,6 +238,24 @@
 				EB77C5601722D885006B1E23 /* ScheduleListViewController.m */,
 			);
 			name = "Schedule Lists";
+			sourceTree = "<group>";
+		};
+		EB77C5621722DD27006B1E23 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EB77C5641722DD3E006B1E23 /* MBProgressHUD.h */,
+				EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		EB77C5631722DD2F006B1E23 /* SecureUDID */ = {
+			isa = PBXGroup;
+			children = (
+				EB77C53D1722B9F6006B1E23 /* SecureUDID.h */,
+				EB77C53E1722B9F6006B1E23 /* SecureUDID.m */,
+			);
+			name = SecureUDID;
 			sourceTree = "<group>";
 		};
 		EB97198A17226CBF00863A71 = {
@@ -339,6 +363,8 @@
 		EB9719D2172276D200863A71 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EB77C5671722E3EB006B1E23 /* Schedule.h */,
+				EB77C5681722E3EB006B1E23 /* Schedule.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -467,6 +493,8 @@
 				EB77C55B1722BC64006B1E23 /* AFXMLRequestOperation.m in Sources */,
 				EB77C55C1722BC64006B1E23 /* UIImageView+AFNetworking.m in Sources */,
 				EB77C5611722D885006B1E23 /* ScheduleListViewController.m in Sources */,
+				EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */,
+				EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,8 @@
 #import "SecureUDID.h"
 #import "AFNetworking.h"
 
+#import "ScheduleListViewController.h"
+
 @interface MainViewController ()
 
 @end
@@ -34,6 +36,22 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (_locationManager) {
+        [_locationManager setDelegate:self];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [_locationManager setDelegate:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,6 +59,10 @@
     
     [self setTitle:@"ISS Spot"];
     [self.view setBackgroundColor:[UIColor blueColor]];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Schedules" style:UIBarButtonItemStyleBordered target:self action:@selector(openSchedule:)];
+    [self.navigationItem setRightBarButtonItem:barButtonItem];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,6 +177,15 @@
         NSLog(@"Error: %@", error);
     }];
     [operation start];
+    
+}
+
+#pragma mark - Open Schedule 
+- (void)openSchedule:(id)sender
+{
+    ScheduleListViewController *scheduleViewController = [[ScheduleListViewController alloc] init];
+    scheduleViewController.locationManager = _locationManager;
+    [self.navigationController pushViewController:scheduleViewController animated:YES];
     
 }
 

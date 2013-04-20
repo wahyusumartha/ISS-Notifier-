@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleListViewController : UIViewController
+@class CLLocationManager;
+@interface ScheduleListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *schedulesTableView;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSMutableArray *responseArray;
+
 
 @end
