@@ -119,15 +119,6 @@
 		EB97198A17226CBF00863A71 = {
 			isa = PBXGroup;
 			children = (
-				EB5FFFFE17228351006D1AB7 /* SystemConfiguration.framework */,
-				EB5FFFFC17228348006D1AB7 /* StoreKit.framework */,
-				EB5FFFFA17228336006D1AB7 /* Security.framework */,
-				EB5FFFF81722832D006D1AB7 /* QuartzCore.framework */,
-				EB5FFFF617228326006D1AB7 /* MobileCoreServices.framework */,
-				EB5FFFF41722831D006D1AB7 /* libz.1.1.3.dylib */,
-				EB5FFFF217228311006D1AB7 /* CoreLocation.framework */,
-				EB5FFFF0172282FC006D1AB7 /* CFNetwork.framework */,
-				EB5FFFEE172282F1006D1AB7 /* AudioToolbox.framework */,
 				EB97199E17226CBF00863A71 /* ISS-Spot */,
 				EB9719C017226CBF00863A71 /* ISS-SpotTests */,
 				EB97199517226CBF00863A71 /* Frameworks */,
@@ -147,6 +138,15 @@
 		EB97199517226CBF00863A71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB5FFFFE17228351006D1AB7 /* SystemConfiguration.framework */,
+				EB5FFFFC17228348006D1AB7 /* StoreKit.framework */,
+				EB5FFFFA17228336006D1AB7 /* Security.framework */,
+				EB5FFFF81722832D006D1AB7 /* QuartzCore.framework */,
+				EB5FFFF617228326006D1AB7 /* MobileCoreServices.framework */,
+				EB5FFFF41722831D006D1AB7 /* libz.1.1.3.dylib */,
+				EB5FFFF217228311006D1AB7 /* CoreLocation.framework */,
+				EB5FFFF0172282FC006D1AB7 /* CFNetwork.framework */,
+				EB5FFFEE172282F1006D1AB7 /* AudioToolbox.framework */,
 				EB9719D317227A2300863A71 /* Parse.framework */,
 				EB97199617226CBF00863A71 /* UIKit.framework */,
 				EB97199817226CBF00863A71 /* Foundation.framework */,
