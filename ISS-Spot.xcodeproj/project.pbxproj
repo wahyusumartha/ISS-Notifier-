@@ -24,6 +24,7 @@
 		EB9719BD17226CBF00863A71 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199C17226CBF00863A71 /* CoreData.framework */; };
 		EB9719C517226CBF00863A71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB9719C317226CBF00863A71 /* InfoPlist.strings */; };
 		EB9719C817226CBF00863A71 /* ISS_SpotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9719C717226CBF00863A71 /* ISS_SpotTests.m */; };
+		EB9719D417227A2300863A71 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9719D317227A2300863A71 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		EB9719C417226CBF00863A71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EB9719C617226CBF00863A71 /* ISS_SpotTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISS_SpotTests.h; sourceTree = "<group>"; };
 		EB9719C717226CBF00863A71 /* ISS_SpotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISS_SpotTests.m; sourceTree = "<group>"; };
+		EB9719D317227A2300863A71 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				EB97199917226CBF00863A71 /* Foundation.framework in Frameworks */,
 				EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */,
 				EB97199D17226CBF00863A71 /* CoreData.framework in Frameworks */,
+				EB9719D417227A2300863A71 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +111,7 @@
 		EB97199517226CBF00863A71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB9719D317227A2300863A71 /* Parse.framework */,
 				EB97199617226CBF00863A71 /* UIKit.framework */,
 				EB97199817226CBF00863A71 /* Foundation.framework */,
 				EB97199A17226CBF00863A71 /* CoreGraphics.framework */,
@@ -120,6 +124,8 @@
 		EB97199E17226CBF00863A71 /* ISS-Spot */ = {
 			isa = PBXGroup;
 			children = (
+				EB9719D2172276D200863A71 /* Models */,
+				EB9719D1172276CB00863A71 /* View Controllers */,
 				EB9719A717226CBF00863A71 /* AppDelegate.h */,
 				EB9719A817226CBF00863A71 /* AppDelegate.m */,
 				EB9719B017226CBF00863A71 /* ISS_Spot.xcdatamodeld */,
@@ -159,6 +165,20 @@
 				EB9719C317226CBF00863A71 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB9719D1172276CB00863A71 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EB9719D2172276D200863A71 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +395,10 @@
 		EB9719CC17226CBF00863A71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISS-Spot/ISS-Spot-Prefix.pch";
 				INFOPLIST_FILE = "ISS-Spot/ISS-Spot-Info.plist";
@@ -387,6 +411,10 @@
 		EB9719CD17226CBF00863A71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISS-Spot/ISS-Spot-Prefix.pch";
 				INFOPLIST_FILE = "ISS-Spot/ISS-Spot-Info.plist";
