@@ -94,7 +94,6 @@
 /**
  *  Get Schedules of International Space Station Pass Times
  *      http://open-notify.org/api-doc
- @"http://api.open-notify.org/iss/?lat=45.47361&lon=-122.64931&alt=100&n=3"
  */
 - (void)getSchedules
 {
