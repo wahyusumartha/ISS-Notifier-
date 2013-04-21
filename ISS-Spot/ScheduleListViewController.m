@@ -14,6 +14,7 @@
 
 #import "Schedule.h"
 #import "WSLocalNotificationScheduler.h"
+#import "ScheduleCell.h"
 
 @interface ScheduleListViewController ()
 
@@ -44,6 +45,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self setTitle:@"Schedules"];
     
     self.schedulesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-44-20) style:UITableViewStylePlain];
     [self.schedulesTableView setDelegate:self];
@@ -77,18 +80,27 @@
 {
     static NSString *CellIdentifier = @"CellIdentifier";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Schedule *schedule = [self.responseArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", schedule.riseTime, schedule.duration];
+    Schedule *schedule = [_responseArray objectAtIndex:indexPath.row];
     
+    NSLog(@"Schedule : %@", schedule.duration);
+    NSLog(@"Schedul : %@", schedule.dateOfRiseTime);
+    
+    [cell.durationLabel setText:[NSString stringWithFormat:@"%d Minutes %d Seconds", schedule.durationInMinutes, schedule.durationInSecond]];
+    [cell.dateLabel setText:[NSString stringWithFormat:@"   %@-%@-%@ %d:%d:%d", schedule.dateOfRiseTime, schedule.monthOfRiseTime, schedule.yearOfRiseTime, schedule.hourOfRiseTime, schedule.minutesOfRiseTime, schedule.secondOfRiseTime]];
     
     return cell;
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 75;
 }
 
 #pragma mark - Get Schedule of International Space Station Pass Times
