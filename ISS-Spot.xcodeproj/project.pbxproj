@@ -46,6 +46,7 @@
 		EB77C58417239836006B1E23 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB77C58317239836006B1E23 /* Social.framework */; };
 		EB77C58617239889006B1E23 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB77C58517239889006B1E23 /* FacebookSDK.framework */; };
 		EB77C58A172398D8006B1E23 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB77C589172398D8006B1E23 /* GoogleMaps.bundle */; };
+		EB77C58E1723AB53006B1E23 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C58D1723AB53006B1E23 /* ScheduleCell.m */; };
 		EB97199717226CBF00863A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199617226CBF00863A71 /* UIKit.framework */; };
 		EB97199917226CBF00863A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199817226CBF00863A71 /* Foundation.framework */; };
 		EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199A17226CBF00863A71 /* CoreGraphics.framework */; };
@@ -132,6 +133,8 @@
 		EB77C58317239836006B1E23 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EB77C58517239889006B1E23 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		EB77C589172398D8006B1E23 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		EB77C58C1723AB53006B1E23 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
+		EB77C58D1723AB53006B1E23 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
 		EB97199317226CBF00863A71 /* ISS-Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISS-Spot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97199617226CBF00863A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB97199817226CBF00863A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -270,6 +273,7 @@
 		EB77C55E1722D85F006B1E23 /* Schedule Lists */ = {
 			isa = PBXGroup;
 			children = (
+				EB77C58B1723AB36006B1E23 /* Schedule Cell  */,
 				EB77C55F1722D885006B1E23 /* ScheduleListViewController.h */,
 				EB77C5601722D885006B1E23 /* ScheduleListViewController.m */,
 			);
@@ -301,6 +305,15 @@
 				EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */,
 			);
 			name = "Local Notification Scheduler ";
+			sourceTree = "<group>";
+		};
+		EB77C58B1723AB36006B1E23 /* Schedule Cell  */ = {
+			isa = PBXGroup;
+			children = (
+				EB77C58C1723AB53006B1E23 /* ScheduleCell.h */,
+				EB77C58D1723AB53006B1E23 /* ScheduleCell.m */,
+			);
+			name = "Schedule Cell ";
 			sourceTree = "<group>";
 		};
 		EB97198A17226CBF00863A71 = {
@@ -553,6 +566,7 @@
 				EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */,
 				EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */,
 				EB77C56D1722F5F8006B1E23 /* WSLocalNotificationScheduler.m in Sources */,
+				EB77C58E1723AB53006B1E23 /* ScheduleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

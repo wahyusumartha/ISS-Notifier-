@@ -17,6 +17,7 @@
 
 @interface MainViewController () {
     GMSMapView *_mapView;
+    GMSMarker *_marker;
 }
 
 @end
@@ -64,23 +65,22 @@
 	// Do any additional setup after loading the view.
     
     [self setTitle:@"ISS Spot"];
-    [self.view setBackgroundColor:[UIColor blueColor]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Schedules" style:UIBarButtonItemStyleBordered target:self action:@selector(openSchedule:)];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
     
     
-    /**
-     *  Load Map View
-     */
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.8683
-//                                                            longitude:151.2086
-//                                                                 zoom:6];
-
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.8683 longitude:151.2086 zoom:6];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_locationManager.location.coordinate.latitude longitude:_locationManager.location.coordinate.longitude zoom:6];
     _mapView = [GMSMapView mapWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-44-20) camera:camera];
-    _mapView.myLocationEnabled = YES;
     [self.view addSubview:_mapView];
+    
+    /**
+     *  Get ISS Location
+     */
+    [self issLocation];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,10 +98,10 @@
     /**
      *  Register User
      */
-    [self sendUser:location.coordinate.latitude withLongiture:location.coordinate.longitude];
+//    [self sendUser:location.coordinate.latitude withLongiture:location.coordinate.longitude];
     
     // Send Device Token
-    [self sendDeviceTokenWithLatitude:location.coordinate.latitude andLongitude:location.coordinate.longitude];
+//    [self sendDeviceTokenWithLatitude:location.coordinate.latitude andLongitude:location.coordinate.longitude];
 
 }
 
@@ -205,6 +205,73 @@
     scheduleViewController.locationManager = _locationManager;
     [self.navigationController pushViewController:scheduleViewController animated:YES];
     
+}
+
+#pragma mark - Get ISS Location 
+- (void)issLocation
+{
+    /**
+     *  Get ISS Location
+     */
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.open-notify.org/iss-now/"]];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        NSDictionary *dictionary = (NSDictionary *)JSON;
+        
+        NSArray *responses = [dictionary objectForKey:@"iss_position"];
+        
+        NSLog(@"Responses : %@", responses);
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[[[dictionary objectForKey:@"iss_position"] objectForKey:@"latitude"] doubleValue] longitude:[[[dictionary objectForKey:@"iss_position"] objectForKey:@"longitude"] doubleValue] zoom:1];
+        
+        [_mapView setCamera:camera];
+        
+        _marker = [[GMSMarker alloc] init];
+        _marker.position = CLLocationCoordinate2DMake([[[dictionary objectForKey:@"iss_position"] objectForKey:@"latitude"] doubleValue], [[[dictionary objectForKey:@"iss_position"] objectForKey:@"longitude"] doubleValue]);
+        _marker.title = @"ISS Location";
+        _marker.map = _mapView;
+        
+        if (_timer == nil) {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(relocateISS:) userInfo:nil repeats:YES];
+        }
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error : %@", error);
+    }];
+    
+    [operation start];
+
+}
+
+- (void)relocateISS:(id)sender
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    /**
+     *  Get ISS Location
+     */
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.open-notify.org/iss-now/"]];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        
+        NSDictionary *dictionary = (NSDictionary *)JSON;
+        
+        NSArray *responses = [dictionary objectForKey:@"iss_position"];
+        
+        NSLog(@"Responses : %@", responses);
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[[[dictionary objectForKey:@"iss_position"] objectForKey:@"latitude"] doubleValue] longitude:[[[dictionary objectForKey:@"iss_position"] objectForKey:@"longitude"] doubleValue] zoom:1];
+        
+        [_mapView setCamera:camera];
+        
+        _marker.position = CLLocationCoordinate2DMake([[[dictionary objectForKey:@"iss_position"] objectForKey:@"latitude"] doubleValue], [[[dictionary objectForKey:@"iss_position"] objectForKey:@"longitude"] doubleValue]);
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error : %@", error);
+    }];
+    
+    [operation start];
 }
 
 

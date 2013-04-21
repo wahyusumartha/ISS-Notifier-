@@ -55,7 +55,7 @@
     userDefaults = nil;
     
     // Add Google Maps API Key
-    [GMSServices provideAPIKey:@"AIzaSyCxB9L3KWCHOSUsPp0h_V__wj8F1xeovb0"];
+    [GMSServices provideAPIKey:@"AIzaSyDA75uQWztE9HiodwfRtsOx5HSGGfdlDlc"];
     
     self.mainViewController = [[MainViewController alloc] init];
     

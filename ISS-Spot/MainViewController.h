@@ -11,6 +11,7 @@
 
 @interface MainViewController : UIViewController <CLLocationManagerDelegate> {
     CLLocationManager *_locationManager;
+    NSTimer *_timer;
 }
 
 @end
