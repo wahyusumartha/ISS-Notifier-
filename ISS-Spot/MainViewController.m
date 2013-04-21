@@ -13,8 +13,11 @@
 #import "AFNetworking.h"
 
 #import "ScheduleListViewController.h"
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MainViewController ()
+@interface MainViewController () {
+    GMSMapView *_mapView;
+}
 
 @end
 
@@ -66,6 +69,18 @@
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Schedules" style:UIBarButtonItemStyleBordered target:self action:@selector(openSchedule:)];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
     
+    
+    /**
+     *  Load Map View
+     */
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.8683
+//                                                            longitude:151.2086
+//                                                                 zoom:6];
+
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.8683 longitude:151.2086 zoom:6];
+    _mapView = [GMSMapView mapWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-44-20) camera:camera];
+    _mapView.myLocationEnabled = YES;
+    [self.view addSubview:_mapView];
 }
 
 - (void)didReceiveMemoryWarning
