@@ -27,8 +27,10 @@
 - (void)scheduleNotificationOn:(NSDate *)fireDate text:(NSString *)alertText action:(NSString *)alertAction sound:(NSString *)soundfileName launchImage:(NSString *)launchImage andInfo:(NSDictionary *)userInfo
 {
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
     localNotification.fireDate = fireDate;
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    
+    NSLog(@"Local Notification Date : %@", localNotification.fireDate);
     
     localNotification.alertBody = alertText;
     localNotification.alertAction = alertAction;
@@ -43,7 +45,7 @@
     localNotification.userInfo = userInfo;
     
     // schedule it with the app
-    [[UIApplication sharedApplication] scheduledLocalNotifications];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     localNotification = nil;
 }
 

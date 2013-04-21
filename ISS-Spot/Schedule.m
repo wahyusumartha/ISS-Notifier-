@@ -14,6 +14,7 @@
 @synthesize riseTime = _riseTime;
 @synthesize durationRawDataInSeconds = _durationRawDataInSeconds;
 @synthesize riseTimeInTimeStamp = _riseTimeInTimeStamp;
+@synthesize fireDate = _fireDate;
 
 @synthesize durationInHour = _durationInHour, durationInMinutes = _durationInMinutes, durationInSecond = _durationInSecond;
 
@@ -96,6 +97,35 @@
     [formatter setDateFormat:@"ss"];
     
     return [[formatter stringFromDate:date] integerValue];
+}
+
+- (NSDate *)fireDate
+{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_riseTimeInTimeStamp];
+    
+    [calendar setTimeZone:[NSTimeZone localTimeZone]];
+    
+    // Break the date up into components
+	NSDateComponents *dateComponents = [calendar components:( NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit )
+												   fromDate:date];
+	NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit )
+												   fromDate:date];
+
+    // Set up the fire time
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:[dateComponents day]];
+    [dateComps setMonth:[dateComponents month]];
+    [dateComps setYear:[dateComponents year]];
+    [dateComps setHour:[timeComponents hour]];
+	// Notification will fire in one minute
+    [dateComps setMinute:[timeComponents minute]];
+	[dateComps setSecond:[timeComponents second]];
+    
+    NSLog(@"%d %d %d - %d:%d:%d", dateComps.day, dateComps.month, dateComps.year, dateComps.hour, dateComps.minute, dateComps.second);
+    
+    return [calendar dateFromComponents:dateComps];
 }
 
 
