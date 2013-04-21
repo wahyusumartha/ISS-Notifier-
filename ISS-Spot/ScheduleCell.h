@@ -10,4 +10,7 @@
 
 @interface ScheduleCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *durationLabel;
+
 @end
