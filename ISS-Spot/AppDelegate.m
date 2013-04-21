@@ -8,20 +8,73 @@
 
 #import "AppDelegate.h"
 
+#import <Parse/Parse.h>
+
+#import "MainViewController.h"
+#import "SecureUDID.h"
+#import "AFNetworking.h"
+
+#import <GoogleMaps/GoogleMaps.h>
+
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+@synthesize navController = _navController;
+@synthesize mainViewController = _mainViewController;
+@synthesize deviceToken = _deviceToken;
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    /** 
+     *  Parse Framework Configufation
+     */
+    [Parse setApplicationId:@"XAF9CVnS3jC8UlJvWdI8EOGmAYZ03nYnopJ35fEK" clientKey:@"j8tE3yICOae88pvkeYKcgMETxD919vypnykWMAqU"];
+    
+    // track statistics around application opens
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // Register for push notifications
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
+    
+    // set registerOrUpdateUser Flag
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:YES forKey:@"registerOrUpdateUser"];
+    [userDefaults synchronize];
+    userDefaults = nil;
+    
+    // Add Google Maps API Key
+    [GMSServices provideAPIKey:@"AIzaSyDA75uQWztE9HiodwfRtsOx5HSGGfdlDlc"];
+    
+    self.mainViewController = [[MainViewController alloc] init];
+    
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.mainViewController];
+    self.navController.delegate = self;
+    
+    [self.window setRootViewController:self.navController];
+    
     [self.window makeKeyAndVisible];
+    
+    // Facebook SDK * pro-tip *
+    // We take advantage of the `FBLoginView` in our loginViewController, which can
+    // automatically open a session if there is a token cached. If we were not using
+    // that control, this location would be a good place to try to open a session
+    // from a token cache.
+
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -43,6 +96,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Reset badges
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -145,5 +205,32 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+#pragma mark - Push Notifications 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"%@", deviceToken);
+    // Store the device token in the current installation and save it to parse
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+    
+    NSString* newDeviceToken = [[[[deviceToken description]
+                                  stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                 stringByReplacingOccurrencesOfString: @">" withString: @""]
+                                stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    self.deviceToken = newDeviceToken;
+}
+
+#pragma mark - Push Notifications 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // Received Push Notification while the app is active
+    [PFPush handlePush:userInfo];
+}
+
+
+
 
 @end
