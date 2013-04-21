@@ -14,6 +14,8 @@
 #import "SecureUDID.h"
 #import "AFNetworking.h"
 
+#import <GoogleMaps/GoogleMaps.h>
+
 
 @implementation AppDelegate
 
@@ -51,6 +53,9 @@
     [userDefaults setBool:YES forKey:@"registerOrUpdateUser"];
     [userDefaults synchronize];
     userDefaults = nil;
+    
+    // Add Google Maps API Key
+    [GMSServices provideAPIKey:@"AIzaSyDA75uQWztE9HiodwfRtsOx5HSGGfdlDlc"];
     
     self.mainViewController = [[MainViewController alloc] init];
     
