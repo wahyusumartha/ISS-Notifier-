@@ -35,6 +35,7 @@
 		EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */; };
 		EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5681722E3EB006B1E23 /* Schedule.m */; };
 		EB77C56D1722F5F8006B1E23 /* WSLocalNotificationScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */; };
+		EB77C56F17239385006B1E23 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB77C56E17239385006B1E23 /* GoogleMaps.framework */; };
 		EB97199717226CBF00863A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199617226CBF00863A71 /* UIKit.framework */; };
 		EB97199917226CBF00863A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199817226CBF00863A71 /* Foundation.framework */; };
 		EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199A17226CBF00863A71 /* CoreGraphics.framework */; };
@@ -110,6 +111,7 @@
 		EB77C5681722E3EB006B1E23 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		EB77C56B1722F5F8006B1E23 /* WSLocalNotificationScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLocalNotificationScheduler.h; sourceTree = "<group>"; };
 		EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLocalNotificationScheduler.m; sourceTree = "<group>"; };
+		EB77C56E17239385006B1E23 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		EB97199317226CBF00863A71 /* ISS-Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISS-Spot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97199617226CBF00863A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB97199817226CBF00863A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +159,7 @@
 				EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */,
 				EB97199D17226CBF00863A71 /* CoreData.framework in Frameworks */,
 				EB9719D417227A2300863A71 /* Parse.framework in Frameworks */,
+				EB77C56F17239385006B1E23 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +296,7 @@
 		EB97199517226CBF00863A71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB77C56E17239385006B1E23 /* GoogleMaps.framework */,
 				EB5F000D17229145006D1AB7 /* Social.framework */,
 				EB5F000B17229133006D1AB7 /* libsqlite3.dylib */,
 				EB5F000917229127006D1AB7 /* Accounts.framework */,
