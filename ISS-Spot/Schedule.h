@@ -27,5 +27,7 @@
 @property (nonatomic, assign, readonly) NSInteger minutesOfRiseTime;
 @property (nonatomic, assign, readonly) NSInteger secondOfRiseTime;
 
+@property (nonatomic, assign, readonly) NSDate *fireDate;
+
 
 @end

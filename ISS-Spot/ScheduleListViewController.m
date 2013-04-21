@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 
 #import "Schedule.h"
+#import "WSLocalNotificationScheduler.h"
 
 @interface ScheduleListViewController ()
 
@@ -94,14 +95,16 @@
 /**
  *  Get Schedules of International Space Station Pass Times
  *      http://open-notify.org/api-doc
- @"http://api.open-notify.org/iss/?lat=45.47361&lon=-122.64931&alt=100&n=3"
  */
 - (void)getSchedules
 {
     
+    // cancell all localnotification
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     NSLog(@"%@", [NSString stringWithFormat:@"http://api.open-notify.org/iss/?lat=%f&lon=%f&alt=%f&n=10", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, self.locationManager.location.altitude]);
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.open-notify.org/iss/?lat=%f&lon=%f&alt=%f&n=10", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, self.locationManager.location.altitude]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.open-notify.org/iss/?lat=%f&lon=%f&alt=%f&n=30", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, self.locationManager.location.altitude]]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         
@@ -114,6 +117,9 @@
             
             [schedule setRiseTimeInTimeStamp:[[[responses objectAtIndex:i] objectForKey:@"risetime"] integerValue]];
             [schedule setDurationRawDataInSeconds:[[[responses objectAtIndex:i] objectForKey:@"duration"] integerValue]];
+            
+            // schedule local notification for each risetime
+            [[WSLocalNotificationScheduler sharedInstance] scheduleNotificationOn:schedule.fireDate text:@"Rise Time for ISS" action:@"View" sound:nil launchImage:nil andInfo:@{@"id":[NSString stringWithFormat:@"%d", schedule.riseTimeInTimeStamp]}];
             
             [self.responseArray addObject:schedule];
             schedule = nil;

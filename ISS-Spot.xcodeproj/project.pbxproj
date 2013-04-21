@@ -34,6 +34,7 @@
 		EB77C5611722D885006B1E23 /* ScheduleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5601722D885006B1E23 /* ScheduleListViewController.m */; };
 		EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */; };
 		EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C5681722E3EB006B1E23 /* Schedule.m */; };
+		EB77C56D1722F5F8006B1E23 /* WSLocalNotificationScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */; };
 		EB97199717226CBF00863A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199617226CBF00863A71 /* UIKit.framework */; };
 		EB97199917226CBF00863A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199817226CBF00863A71 /* Foundation.framework */; };
 		EB97199B17226CBF00863A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB97199A17226CBF00863A71 /* CoreGraphics.framework */; };
@@ -107,6 +108,8 @@
 		EB77C5651722DD3E006B1E23 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EB77C5671722E3EB006B1E23 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		EB77C5681722E3EB006B1E23 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		EB77C56B1722F5F8006B1E23 /* WSLocalNotificationScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLocalNotificationScheduler.h; sourceTree = "<group>"; };
+		EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLocalNotificationScheduler.m; sourceTree = "<group>"; };
 		EB97199317226CBF00863A71 /* ISS-Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISS-Spot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97199617226CBF00863A71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EB97199817226CBF00863A71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,6 +177,7 @@
 		EB77C53A1722B95C006B1E23 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EB77C56A1722F56A006B1E23 /* Local Notification Scheduler  */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +260,15 @@
 				EB77C53E1722B9F6006B1E23 /* SecureUDID.m */,
 			);
 			name = SecureUDID;
+			sourceTree = "<group>";
+		};
+		EB77C56A1722F56A006B1E23 /* Local Notification Scheduler  */ = {
+			isa = PBXGroup;
+			children = (
+				EB77C56B1722F5F8006B1E23 /* WSLocalNotificationScheduler.h */,
+				EB77C56C1722F5F8006B1E23 /* WSLocalNotificationScheduler.m */,
+			);
+			name = "Local Notification Scheduler ";
 			sourceTree = "<group>";
 		};
 		EB97198A17226CBF00863A71 = {
@@ -495,6 +508,7 @@
 				EB77C5611722D885006B1E23 /* ScheduleListViewController.m in Sources */,
 				EB77C5661722DD3E006B1E23 /* MBProgressHUD.m in Sources */,
 				EB77C5691722E3EB006B1E23 /* Schedule.m in Sources */,
+				EB77C56D1722F5F8006B1E23 /* WSLocalNotificationScheduler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

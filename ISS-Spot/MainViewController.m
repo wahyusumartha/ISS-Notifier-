@@ -43,6 +43,9 @@
     if (_locationManager) {
         [_locationManager setDelegate:self];
     }
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:50/255.f green:58/255.f blue:69/255.f alpha:1.0]];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
